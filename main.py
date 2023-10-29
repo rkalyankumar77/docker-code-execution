@@ -18,9 +18,9 @@ def main():
     
     if len(client.containers.list()) < 2:
         # The below code is equivalent to the docker cli command: 
-        #   docker run -d -it -v /home/kalyan/submissions:/submissions python-ce-engine tail -f /dev/null
+        #   docker run -d -it -v /home/kalyan/submissions:/submissions python-ce-engine sleep infinity
         # tty = True and stdin_open = True are required to run the container in interactive mode (-it option)
-        client.containers.run('python-ce-engine', "tail -f /dev/null", 
+        client.containers.run('python-ce-engine', "sleep infinity", 
                               volumes={'/home/kalyan/submissions': {'bind': '/submissions', 'mode': 'rw'}}, 
                               detach=True, tty=True, stdin_open=True)
     
